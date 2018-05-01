@@ -11,7 +11,7 @@ public class Calculator {
             System.out.println("Hello there! It's a calculator.");
             System.out.print("Enter x: ");
             x = sc.nextDouble();
-            System.out.print("Enter y: ");
+            System.out.println("\nEnter y: ");
             y = sc.nextDouble();
             System.out.println("What you want?");
             System.out.println("1. summation\n" +
