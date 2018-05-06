@@ -25,6 +25,5 @@ public class Jager {
         System.out.println("Armor: " + romeoBlue.armor);
         System.out.println("Kaiju Killed: " + romeoBlue.kaijuKilled);
         System.out.println("Status: " + romeoBlue.status);
-
     }
 }
