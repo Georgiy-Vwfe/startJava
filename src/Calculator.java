@@ -1,18 +1,25 @@
 import java.util.Scanner;
 
 public class Calculator {
-    public static void main(String[] argc) {
-        Scanner sc = new Scanner(System.in);
-        boolean quit = false;
-        double x;
-        double y;
-        byte selector;
-        while (quit != true) {
-            System.out.println("Hello there! It's a calculator.");
+
+    private Scanner scanner = new Scanner(System.in);
+    private String wantContinue = "no";
+    private double x;
+    private double y;
+    private byte selector;
+
+    void continueCalc() {
+        System.out.print("Do you want Continue?\nEnter yes or no: ");
+        wantContinue = scanner.nextLine();
+    }
+
+    void run() {
+        while (wantContinue.equals("no")) {
+            System.out.println("Hello there! It's calculator.");
             System.out.print("Enter x: ");
-            x = sc.nextDouble();
-            System.out.println("\nEnter y: ");
-            y = sc.nextDouble();
+            x = scanner.nextDouble();
+            System.out.println("Enter y: ");
+            y = scanner.nextDouble();
             System.out.println("What you want?");
             System.out.println("1. summation\n" +
                     "2. subtraction\n" +
@@ -21,7 +28,7 @@ public class Calculator {
                     "5. exponentiation\n" +
                     "6. mod\n" +
                     "0. Quit");
-            selector = sc.nextByte();
+            selector = scanner.nextByte();
             switch (selector) {
                 case 1: {
                     System.out.println("x + y = " + (x + y));
@@ -48,12 +55,16 @@ public class Calculator {
                     break;
                 }
                 case 0: {
-                    quit = true;
+                    wantContinue = "no";
                     break;
                 }
                 default: {
                     System.out.println("Error number.");
                 }
+            }
+            continueCalc();
+            if (wantContinue == "yes"){
+                continue;
             }
         }
     }
