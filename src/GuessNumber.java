@@ -2,12 +2,11 @@ import java.util.Random;
 import java.util.Scanner;
 
 public class GuessNumber {
-    private void initPlayer(){
 
-    }
     public void playGame() {
-        String quit = "no";
         Scanner scanner = new Scanner(System.in);
+        Random random = new Random();
+        String quit = "no";
         int findNumber;
         int enteredNumber;
 
@@ -17,6 +16,8 @@ public class GuessNumber {
         player2.name();
 
         int parity = 0;
+
+        findNumber = random.nextInt(100);
         while (quit.equals("no")) {
             if (parity % 2 == 0) {
                 System.out.println("Your turn, " + player1.getPlayer());
@@ -25,8 +26,6 @@ public class GuessNumber {
                 System.out.println("Your turn, " + player2.getPlayer());
                 parity++;
             }
-            Random random = new Random();
-            findNumber = random.nextInt(10);
             System.out.print("Enter num: ");
             enteredNumber = scanner.nextInt();
 
