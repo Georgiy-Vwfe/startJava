@@ -3,19 +3,20 @@ import java.util.Scanner;
 public class Calculator {
 
     private Scanner scanner = new Scanner(System.in);
-    private String wantContinue = "no";
+    private String wantContinue = "yes";
     private double x;
     private double y;
     private byte selector;
 
     void continueCalc() {
         System.out.print("Do you want Continue?\nEnter yes or no: ");
+        scanner.nextLine();
         wantContinue = scanner.nextLine();
     }
 
     void run() {
-        while (wantContinue.equals("no")) {
-            System.out.println("Hello there! It's calculator.");
+        System.out.println("Hello there! It's calculator.");
+        while (wantContinue.equals("yes")) {
             System.out.print("Enter x: ");
             x = scanner.nextDouble();
             System.out.println("Enter y: ");
@@ -63,9 +64,6 @@ public class Calculator {
                 }
             }
             continueCalc();
-            if (wantContinue == "yes"){
-                continue;
-            }
         }
     }
 }

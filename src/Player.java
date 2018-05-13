@@ -1,12 +1,16 @@
 import java.util.Scanner;
 
 public class Player {
+    private String player;
 
-    String name(){
+
+    public void name() {
         Scanner scanner = new Scanner(System.in);
         System.out.print("Print your name, Player: ");
-        String player = scanner.nextLine();
-        return player;
+        player = scanner.nextLine();
     }
 
+    public String getPlayer() {
+        return player;
+    }
 }
