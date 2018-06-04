@@ -1,4 +1,4 @@
-package com.Lession3.Calculator;
+package com.lession3.calculator;
 
 import java.util.Scanner;
 
@@ -6,18 +6,23 @@ public class Calculator {
 
     private Scanner scanner = new Scanner(System.in);
     private String wantContinue = "yes";
-    private byte selector;
     private String[] history = new String[100];
     private String result;
     private int i = 0;
 
     void continueCalc() {
-        System.out.print("\nDo you want Continue?\nEnter yes or no: ");
-        scanner.nextLine();
-        wantContinue = scanner.nextLine();
+        do {
+            System.out.print("\nDo you want Continue?\nEnter yes or no: ");
+            scanner.nextLine();
+            wantContinue = scanner.nextLine();
+            if (wantContinue.equals("yes") || wantContinue.equals("no")){
+                break;
+            }
+        }while (true);
     }
 
     void run() {
+        byte selector;
         double x;
         double y;
         System.out.println("Hello there! It's calculator.");

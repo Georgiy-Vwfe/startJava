@@ -1,4 +1,4 @@
-package com.Lession3.Jager;
+package com.lession3.jager;
 public class Jager {
     private String launched = "December 15, 2015";
     private String name = "";
