@@ -5,17 +5,16 @@ import java.util.Scanner;
 
 public class GuessNumber {
     private Scanner scanner = new Scanner(System.in);
-    private byte parity = 0;
     private int findNumber;
     private int enteredNumber;
     private int countAnswer = 0;
     private int[] Answers = new int[100];
     private int numberOfPlayers;
     private int[] numberOfMoves;
-    String quit = "";
-    Player player0 = new Player();
-    Player player1 = new Player();
-    Player player2 = new Player();
+    private String quit = "";
+    private Player player0 = new Player();
+    private Player player1 = new Player();
+    private Player player2 = new Player();
 
     private void initPlayers() {
         do {
@@ -41,6 +40,7 @@ public class GuessNumber {
     }
 
     public void playGame() {
+        int parity = 0;
         Random random = new Random();
         initPlayers();
         findNumber = random.nextInt(1);
@@ -51,19 +51,19 @@ public class GuessNumber {
                     System.out.print("Enter num: ");
                     enteredNumber = scanner.nextInt();
                     fillAnswers();
-                    numberOfMovesCounter();
-                    result();
+                    numberOfMovesCounter(parity);
+                    endGame(parity);
                 }
                 break;
             case 2:
                 while (!quit.equals("yes")) {
-                    System.out.println("Your turn, " + playerList());
+                    System.out.println("Your turn, " + playerList(parity));
                     parity++;
                     System.out.print("Enter num: ");
                     enteredNumber = scanner.nextInt();
                     fillAnswers();
-                    numberOfMovesCounter();
-                    result();
+                    numberOfMovesCounter(parity);
+                    endGame(parity);
                 }
                 break;
         }
@@ -76,8 +76,8 @@ public class GuessNumber {
         countAnswer++;
     }
 
-    private void returnAnswers() {
-        System.out.print("Answers of player " + playerList() + ":");
+    private void returnAnswers(int parity) {
+        System.out.print("Answers of player " + playerList(parity) + ":");
         if (parity % 2 == 0) {
             for (int j = 0; j < 100; j += 2) {
                 if (Answers[j] == 0) {
@@ -92,26 +92,32 @@ public class GuessNumber {
                 }
                 System.out.print(" " + Answers[j]);
             }
-        } else return;
+        }
     }
 
 
-    private String playerList() {
-        if (parity%2 == 0){
+    private String playerList(int parity) {
+        if (parity % 2 == 0) {
             return player1.getPlayerName();
-        } else if (parity%2 ==1){
+        } else if (parity % 2 == 1) {
             return player2.getPlayerName();
         }
         return "Error";
     }
 
-    private void numberOfMovesCounter() {
-        numberOfMoves[parity % 2]++;
+    private void numberOfMovesCounter(int parity) {
+        if (parity % 2 == 0) {
+            numberOfMoves[0]++;
+        } else if (parity % 2 == 1) {
+            numberOfMoves[1]++;
+        }
+
     }
-    private void result(){
+
+    private void endGame(int parity) {
         if (enteredNumber == findNumber) {
             System.out.println("Entered num = hidden num");
-            returnAnswers();
+            returnAnswers(parity);
             System.out.println("\nPlayer " + player0.getPlayerName() + " find number " + findNumber + " in " + numberOfMoves[parity % 2] + " moves\n");
             System.out.print("Do you want quit?\n" + "Type yes or no: ");
             scanner.nextLine();
@@ -122,7 +128,8 @@ public class GuessNumber {
             System.out.println("Entered num < hidden num");
         }
     }
-    private void wantExit(){
+
+    private void wantExit() {
         quit = scanner.nextLine();
         if (!quit.equals("yes")) {
             numberOfMoves[0] = 0;
